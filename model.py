@@ -276,3 +276,27 @@ if __name__ == "__main__":
     
     print("\n=== Running Custom Policy ===")
     run_custom_policy(n_steps=50)
+
+    print("\n=== Estimating Parameters with PPO ===")
+    data = np.random.rand(100, 12)  # Example data: 100 timesteps, 12 features (4 pipes + end sensor + outside temp)
+    estimated_params = estimate_parameters_with_ppo(data)
+    print(f"Estimated parameters: {estimated_params}")
+
+def estimate_parameters_with_ppo(timeseries_data):
+    """
+    Estimate the underlying parameters from time series sensor/valve data using a PPO model.
+    
+    Args:
+        timeseries_data (numpy.ndarray): Time series data of shape (timesteps, features)
+        
+    Returns:
+        numpy.ndarray: Estimated parameters
+    """
+    # Load the trained PPO model
+    ppo_model = PPO.load("models/lstm_thermal")
+    
+    # Use the model to predict actions based on the timeseries_data
+    estimated_actions, _states = ppo_model.predict(timeseries_data)
+    
+    # For demonstration purposes, let's assume we're estimating the opening degrees of valves
+    return estimated_actions

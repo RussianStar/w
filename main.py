@@ -106,5 +106,5 @@ if __name__ == "__main__":
     
     print("\n\n=== Running Constant Action Tests ===")
     # Test with different constant opening degrees
-    constant_action_test(opening_degree=0.3, steps=20)
-    constant_action_test(opening_degree=0.7, steps=20)
+    constant_action_test(opening_degree=0.1, steps=20)
+    constant_action_test(opening_degree=1, steps=20)
