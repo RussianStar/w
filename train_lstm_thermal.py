@@ -55,6 +55,26 @@ if __name__ == "__main__":
                         help="Number of timesteps to collect before updating")
     parser.add_argument("--mini_batch_size", type=int, default=256, 
                         help="Mini-batch size (increased for GPU efficiency)")
+
+    # PPO-specific hyperparameters
+    parser.add_argument("--gamma", type=float, default=0.99, 
+                        help="Discount factor")
+    parser.add_argument("--gae_lambda", type=float, default=0.95, 
+                        help="GAE lambda parameter")
+    parser.add_argument("--clip_ratio", type=float, default=0.2, 
+                        help="PPO clip ratio")
+    parser.add_argument("--value_coef", type=float, default=0.5, 
+                        help="Value loss coefficient")
+    parser.add_argument("--entropy_coef", type=float, default=0.01, 
+                        help="Entropy loss coefficient")
+    parser.add_argument("--max_grad_norm", type=float, default=0.5, 
+                        help="Maximum gradient norm")
+    parser.add_argument("--update_epochs", type=int, default=10, 
+                        help="Number of epochs for each update")
+
+    # Evaluation parameters
+    parser.add_argument("--eval_episodes", type=int, default=5, 
+                        help="Number of episodes to evaluate the agent during evaluation phases")
     
     # GPU utilization
     parser.add_argument("--multi_gpu", action="store_true", default=True,
