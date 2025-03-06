@@ -129,7 +129,7 @@ class LSTMActorCritic(nn.Module):
     
     def forward(self, state, sequence_length=1):
         """
-        Forward pass through the network.
+        Forward pass with gradient retention fixes.
         
         Args:
             state (torch.Tensor): State tensor of shape (batch_size, sequence_length, state_dim)
@@ -139,6 +139,7 @@ class LSTMActorCritic(nn.Module):
             tuple: (action_mean, action_std, value)
         """
         batch_size = state.size(0)
+        
         
         # Reshape state for LSTM if needed
         if len(state.shape) == 2:
